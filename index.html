@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokeScore | 高考分数宝可梦映射</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Gaokao x National Dex</p>
+          <h1>PokeScore</h1>
+        </div>
+        <div class="top-summary" aria-label="当前方案">
+          <span>3+3 六维版</span>
+          <strong id="totalScore">-- / 750</strong>
+        </div>
+      </header>
+
+      <section class="builder-panel" aria-label="高考科目与六维配置">
+        <div class="builder-head">
+          <div>
+            <p class="eyebrow">Step 1</p>
+            <h2>选择你的 3 门选考科目</h2>
+          </div>
+          <p id="selectionHint">已选择 0 / 3</p>
+        </div>
+        <div id="electiveChoices" class="choice-grid"></div>
+
+        <div class="builder-head compact">
+          <div>
+            <p class="eyebrow">Step 2</p>
+            <h2>确认科目对应的宝可梦六维</h2>
+          </div>
+        </div>
+        <div id="mappingGrid" class="mapping-grid"></div>
+
+        <div class="builder-head compact">
+          <div>
+            <p class="eyebrow">Step 3</p>
+            <h2>输入每门课成绩</h2>
+          </div>
+          <button id="matchButton" type="button">生成匹配</button>
+        </div>
+        <div id="scoreGrid" class="score-grid"></div>
+      </section>
+
+      <section class="result-layout" aria-live="polite">
+        <article class="pokemon-panel">
+          <div class="pokemon-copy">
+            <p id="matchLabel" class="eyebrow">匹配结果</p>
+            <h2 id="pokemonName">--</h2>
+            <p id="pokemonEnglish" class="subname">--</p>
+            <div id="typeList" class="type-list"></div>
+            <dl class="facts">
+              <div>
+                <dt>全国图鉴</dt>
+                <dd id="dexId">--</dd>
+              </div>
+              <div>
+                <dt>世代</dt>
+                <dd id="generation">--</dd>
+              </div>
+              <div>
+                <dt>种族值总和</dt>
+                <dd id="baseTotal">--</dd>
+              </div>
+            </dl>
+            <a id="dexLink" class="dex-link" href="https://nationaldex.io/zh-CN" target="_blank" rel="noreferrer">
+              打开 NationalDex
+            </a>
+          </div>
+          <div class="art-stage">
+            <img id="pokemonArt" alt="" />
+          </div>
+        </article>
+
+        <article class="chart-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">六维换算</p>
+              <h2 id="scoreTitle">等待输入</h2>
+            </div>
+            <span id="percentileBadge" class="badge">--</span>
+          </div>
+          <canvas id="radar" width="520" height="520" aria-label="六维雷达图"></canvas>
+          <div id="statBars" class="stat-bars"></div>
+        </article>
+      </section>
+
+      <section class="method-strip">
+        <div>
+          <span class="method-label">映射</span>
+          <strong>单科成绩先按满分换算分位，再落到对应种族值分布</strong>
+        </div>
+        <div>
+          <span class="method-label">六维</span>
+          <strong>语文 HP、数学物攻、外语特攻，三门选考对应物防/特防/速度</strong>
+        </div>
+        <div>
+          <span class="method-label">数据</span>
+          <strong>本地 Gen 1-7 共 809 只，链接跳转 NationalDex</strong>
+        </div>
+      </section>
+    </main>
+
+    <script src="./data/pokemon.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
